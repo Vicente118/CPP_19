@@ -16,13 +16,13 @@ Fixed::Fixed(const Fixed& newFixed)
 Fixed::Fixed(int const raw)
 {
     std::cout << "Int constructor called" << std::endl;
-    this->_value = raw << _8bits; // Revient a multiplier par 256
+    this->_value = raw << _8bits;
 }
 
 Fixed::Fixed(float const raw)
 {
     std::cout << "Float constructor called" << std::endl;
-    this->_value = static_cast<int>(raw * 256/*(1 << _8bits)*/); 
+    this->_value = static_cast<int>(raw * 256); 
 }
 
 Fixed::~Fixed()
@@ -56,7 +56,7 @@ int Fixed::toInt() const
 
 float Fixed::toFloat() const
 {
-    return static_cast<float>(this->_value) / (1 << _8bits);
+    return static_cast<float>(this->_value) / 256;
 }
 
 std::ostream& operator<<(std::ostream& out, const Fixed& fixed)
