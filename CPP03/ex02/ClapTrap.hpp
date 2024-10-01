@@ -7,7 +7,7 @@
 
 class ClapTrap
 {
-    private :
+    protected :            // Permet aux classes enfants d'acceder aux attributs de la classe mere depuis des methodes.
         std::string name;
         unsigned int hitPoints;
         unsigned int energyPoints;

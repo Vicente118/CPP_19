@@ -10,7 +10,7 @@ ClapTrap::ClapTrap(std::string name) : name(name), hitPoints(10), energyPoints(1
     std::cout << "Constructor called -> " << this->name << std::endl;
 }
 
-ClapTrap::ClapTrap(const ClapTrap &clapREF) : name(clapREF.name), hitPoints(10), energyPoints(10), attackDamage(0)
+ClapTrap::ClapTrap(const ClapTrap &clapREF) : name(clapREF.name), hitPoints(clapREF.hitPoints), energyPoints(clapREF.energyPoints), attackDamage(clapREF.attackDamage)
 {
     std::cout << "Copy constructor called -> " << this->name << std::endl;
 }
@@ -55,19 +55,20 @@ void ClapTrap::attack(const std::string &target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-    if (amount > this->hitPoints){
-        std::cout << "You can't reach a negative hitpoint for a ClapTrap" << std::endl;
-        return ;
-    }
     if (this->hitPoints == 0){
         std::cout << "ClapTrap " << this->name << " is already dead" << std::endl;
+        return ;
+    }
+    if (amount >= this->hitPoints){
+        std::cout << "ClapTrap " << this->name << " has been damaged by " 
+              << amount << " hit points" << std::endl;
+        std::cout << "ClapTrap " << this->name << " died" << std::endl;
+        this->hitPoints = 0;
         return ;
     }
     std::cout << "ClapTrap " << this->name << " has been damaged by " 
               << amount << " hit points" << std::endl;
     this->hitPoints -= amount;
-    if (this->hitPoints == 0)
-        std::cout << "ClapTrap " << this->name << " died" << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
@@ -76,7 +77,12 @@ void ClapTrap::beRepaired(unsigned int amount)
         std::cout << "ClapTrap " << this->name << " is already dead" << std::endl;
         return ;
     }
+    if (this->energyPoints == 0) {
+        std::cout << this->name << " has no energy point left" << std::endl;
+        return ;
+    }
     std::cout << "ClapTrap " << this->name << " has been repaired by " 
               << amount << " hit points" << std::endl;
     this->hitPoints += amount;
+    this->energyPoints -= 1;
 }

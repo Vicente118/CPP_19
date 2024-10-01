@@ -1,12 +1,12 @@
-NAME = fragtrap 
+NAME = animal
 
-SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
+SRCS = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
 CC = c++
 
-FLAGS = -Wall -Wextra - -std=c++98
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 RM = rm -rf
 
