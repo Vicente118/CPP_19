@@ -42,7 +42,7 @@ const u_int Form::getGradeToExecute() const { return this->gradeToExecute; }
 void Form::beSigned(const Bureaucrat& bureaucratREF) {
     if (bureaucratREF.getGrade() <= this->gradeToSign)
     {
-        this->isSigned == true;
+        this->isSigned = true;
         std::cout << bureaucratREF.getName() << " signed " << this->name << std::endl;
     }
     else

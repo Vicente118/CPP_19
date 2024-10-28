@@ -3,9 +3,9 @@
 
 # include <iostream>
 # include <string>
-# include "Form.hpp"
+# include "AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -35,7 +35,7 @@ class Bureaucrat
         void incrementGrade();
         void decrementGrade();
 
-        void signForm(Form& formREF) const ;
+        void signForm(AForm& formREF) const ;
 };
 
 std::ostream&   operator<<(std::ostream& out, const Bureaucrat& ref);
