@@ -1,12 +1,12 @@
 NAME = aform
 
-SRCS = main.cpp Bureaucrat.cpp AForm.cpp
+SRCS = main.cpp AForm.cpp Bureaucrat.cpp ShrubberyCreationForm.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
 CC = c++
 
-FLAGS = -Wall -Wextra -Werror -std=c++98
+FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
 RM = rm -rf
 

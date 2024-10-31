@@ -3,7 +3,7 @@
 
 # include "AForm.hpp"
 
-# define TREE "            ccee88oo\n\
+# define TREE "                          ccee88oo\n\
                     C8O8O8Q8PoOb o8oo\n\
                     dOB69QO8PdUOpugoO9bD\n\
                     CgggbU8OU qOp qOdoUOdcb\n\
@@ -12,7 +12,7 @@
                             |||||\n\
                             |||||\n\
                             |||||\n\
-                       .....|||||.....\n\"
+                       .....|||||....."
     
 
 class ShrubberyCreationForm : public AForm
@@ -26,7 +26,11 @@ class ShrubberyCreationForm : public AForm
         ShrubberyCreationForm(const ShrubberyCreationForm& ref);
         ShrubberyCreationForm& operator=(const ShrubberyCreationForm& ref);
         ~ShrubberyCreationForm();
+        
         virtual void execute(Bureaucrat const & executor) const;
 };
+
+void    drawTree(std::ofstream& file);
+
 
 #endif
