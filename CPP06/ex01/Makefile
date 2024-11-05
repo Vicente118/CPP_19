@@ -1,6 +1,6 @@
-NAME = bureaucrat
+NAME = serializer
 
-SRCS = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp
+SRCS = main.cpp Serializer.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

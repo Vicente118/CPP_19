@@ -27,18 +27,20 @@ class AForm
         };
 
         AForm(const std::string name, const u_int gradeToSign, const u_int gradeToExecute);
-        AForm(const Form& formREF);
-        AForm& operator=(const Form& formREF);
-        virtual ~AForm() = 0;
+        AForm(const AForm& formREF);
+        AForm& operator=(const AForm& formREF);
+        virtual ~AForm();
 
-        virtual const std::string getName() const;
-        virtual bool getIsSigned() const;
-        virtual const u_int getGradeToSign() const;
-        virtual const u_int getGradeToExecute() const;
+        const std::string getName() const;
+        bool getIsSigned() const;
+        const u_int getGradeToSign() const;
+        const u_int getGradeToExecute() const;
 
-        virtual void beSigned(const Bureaucrat& bureaucratRef);
+        void beSigned(const Bureaucrat& bureaucratRef);
+
+        virtual void execute(Bureaucrat const &executor) const = 0;
 };
 
-std::ostream&   operator<<(std::ostream& out, const Form& ref);
+std::ostream&   operator<<(std::ostream& out, const AForm& ref);
 
 #endif

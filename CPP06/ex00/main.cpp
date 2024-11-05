@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
         return 1;
     }
     
-    ScalarConverter::convert("");
+    ScalarConverter::convert(static_cast<std::string>(argv[1]));
 
     return 0;
 }
