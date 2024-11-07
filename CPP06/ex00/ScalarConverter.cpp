@@ -1,5 +1,7 @@
 #include "ScalarConverter.hpp"
 
+#define DOUBLE_PRECISION 3
+
 void ScalarConverter::convert(std::string input)
 {
     char charValue;
@@ -8,7 +10,7 @@ void ScalarConverter::convert(std::string input)
     float floatValue;
 
     try {
-        doubleValue = std::stod(input);
+        doubleValue = std::atof(input.c_str());
     } catch (std::invalid_argument&) {
         std::cout << "Error : invalid argument" << std::endl;
         return;
@@ -16,12 +18,12 @@ void ScalarConverter::convert(std::string input)
         std::cout << "Error : out of range" << std::endl;
         return;
     }
-    for (int i = 0; i < input.length() - 1; i++) {
+    for (long unsigned int i = 0; i < input.length() - 1; i++) {
         if (input[i] == 46 && (input[i + 1] < 48 || input[i + 1] > 57) && (input[i + 1]) != 'f') {
             std::cout << "Error : invalid argument" << std::endl;
             return;
         }
-        if ((input[i] >= 48 && input[i] <= 57) && (((input[i + 1] <= 48 || input[i + 1] > 57) && input[i + 1] != 46))) 
+        if ((input[i] >= 48 && input[i] <= 57) && (((input[i + 1] < 48 || input[i + 1] > 57) && input[i + 1] != 46))) 
         {
             if ((i == input.length() - 2) && input[i + 1] == 'f')
                 break;
@@ -68,7 +70,7 @@ void ScalarConverter::convert(std::string input)
     //toDouble
     if (doubleValue >= -std::numeric_limits<double>::max() && doubleValue <= std::numeric_limits<double>::max())
     {
-        std::cout << std::fixed << std::setprecision(1);
+        std::cout << std::fixed << std::setprecision(DOUBLE_PRECISION);
         std::cout << "double: " << doubleValue << std::endl;
 
     }

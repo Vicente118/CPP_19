@@ -5,6 +5,7 @@
 # include <ctime> 
 # include <iostream>
 # include <unistd.h>
+# include <typeinfo>
 
 class Base {
     public :

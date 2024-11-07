@@ -1,12 +1,12 @@
-NAME = scalarconverter
+NAME = array
 
-SRCS = main.cpp Serializer.cpp
-
-CXX = c++
+SRCS = main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CC = c++
+
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 RM = rm -rf
 
@@ -14,7 +14,7 @@ RM = rm -rf
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)

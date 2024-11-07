@@ -42,23 +42,26 @@ void identify(Base& p)
 {
     try {
         A &a = dynamic_cast<A&>(p);
+        (void)a;
         std::cout << "\033[31mThe reference p is identified as a A instance" << std::endl;
     } catch (std::bad_cast&) {}
 
     try {
         B &b = dynamic_cast<B&>(p);
+        (void)b;
         std::cout << "\033[31mThe reference p is identified as a B instance" << std::endl;
     } catch (std::bad_cast&) {}
 
     try {
         C &c = dynamic_cast<C&>(p);
+        (void)c;
         std::cout << "\033[31mThe reference p is identified as a C instance" << std::endl;
     } catch (std::bad_cast&) {}
 }
 
 int main()
 {
-    Base *base[N] = {nullptr};
+    Base *base[N] = {NULL};
     for (int i = 0; i < N; i++) {
         base[i] = generate();
         usleep(1000000);
