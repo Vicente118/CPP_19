@@ -4,23 +4,24 @@
 # include <iostream>
 # include <string>
 
+typedef unsigned int u_int;
 template<typename T>
 class Array
 {
     private :
 
         T *array;
-        unsigned int sizeArray;
+        u_int sizeArray;
 
     public :
 
         Array() : array(0), sizeArray(0) {}
-        Array(unsigned int n) : array(new T[n]()), sizeArray(n) {}
+        Array(u_int n) : array(new T[n]()), sizeArray(n) {}
 
         Array(const Array& ref) {
             this->sizeArray = ref.sizeArray;
             this->array = new T[sizeArray]();
-            for (int i = 0; i < sizeArray; i++) {
+            for (u_int i = 0; i < sizeArray; i++) {
                 this->array[i] = ref.array[i];
             }
         }
@@ -32,7 +33,7 @@ class Array
                 delete[] this->array;
                 sizeArray = ref.sizeArray;
                 this->array = new T[sizeArray]();
-                for (unsigned int i = 0; i < sizeArray; i++)
+                for (u_int i = 0; i < sizeArray; i++)
                 {
                     this->array[i] = ref.array[i];
                 }
@@ -40,7 +41,7 @@ class Array
             return *this;
         }
 
-        T& operator[](unsigned int index) {
+        T& operator[](u_int index) {
             if (index >= sizeArray) {
                 throw std::out_of_range("Index out of bounds");
             }
@@ -50,7 +51,7 @@ class Array
 
         ~Array() { delete[] array; }
 
-        unsigned int size() const { return this->sizeArray; }
+        u_int size() const { return this->sizeArray; }
 };
 
 #endif

@@ -1,5 +1,5 @@
-#ifndef __EASYFIND__
-# define __EASYFIND__
+#ifndef __SPAN__
+# define __SPAN__
 
 #include <iostream>
 #include <string>
@@ -26,14 +26,22 @@
 #define BOLDCYAN    "\033[1m\033[36m"      /* Bold Cyan */
 #define BOLDWHITE   "\033[1m\033[37m"      /* Bold White */
 
-template<typename T>
-typename T::iterator easyfind(T container, int number)
+typedef unsigned int uint;
+
+class Span
 {
-    typename T::iterator it;
-        it = std::find(container.begin(), container.end(), number);
-    if (it == container.end())
-        throw  "Error : maxSize has been reached";
-    return it;
-}
+    private :
+        std::vector<uint> vect;
+        uint maxSize;
+        Span();
+    public :
+        Span(uint N);
+        Span(const Span& ref);
+        Span& operator=(const Span &ref);
+        ~Span();
+
+        void addNumber(uint number);
+        
+};
 
 #endif

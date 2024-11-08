@@ -11,7 +11,7 @@ int main()
     std::cout << "\033[1m\033[34m/// ARRAY ///\033[0m" << std::endl;
     Array<int> myArray(5);
     std::cout << myArray.size() << std::endl;
-    for (int i = 0; i < myArray.size(); i++)
+    for (u_int i = 0; i < myArray.size(); i++)
     {
         myArray[i] = (i * 3) + 2;
     }
@@ -19,7 +19,7 @@ int main()
     
     /// PRINT ARRAY ///
     std::cout << "\033[1m\033[34m/// DISPLAY ARRAY ///\033[0m" << std::endl;
-    for (int i = 0; i < myArray.size(); i++)
+    for (u_int i = 0; i < myArray.size(); i++)
     {
         std::cout << "Array[" << i << "] = " << myArray[i] << std::endl;
     }
