@@ -3,10 +3,13 @@
 
 #include <iostream>
 #include <string>
+#include <limits>
 #include <algorithm>
 #include <vector>
 #include <list>
 #include <deque>
+#include <cmath> 
+#include <ctime>
 
 #define RESET   "\033[0m"
 #define BLACK   "\033[30m"      /* Black */
@@ -41,7 +44,8 @@ class Span
         ~Span();
 
         void addNumber(uint number);
-        
+        uint shortestSpan();
+        uint longestSpan();
 };
 
 #endif
