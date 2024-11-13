@@ -41,7 +41,7 @@ class Span
         ~Span();
 
         void addNumber(uint number);
-        
+        void addNumber(std::vector<uint>::iterator begin, std::vector<uint>::iterator end);
 };
 
 #endif
