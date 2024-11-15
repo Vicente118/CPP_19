@@ -1,13 +1,11 @@
-#ifndef __SPAN__
-# define __SPAN__
+#ifndef __MUTANTSTACK__
+# define __MUTANTSTACK__
 
 #include <iostream>
 #include <string>
 #include <limits>
 #include <algorithm>
-#include <vector>
-#include <list>
-#include <deque>
+#include <stack>
 #include <cmath> 
 #include <ctime>
 
@@ -29,26 +27,39 @@
 #define BOLDCYAN    "\033[1m\033[36m"      /* Bold Cyan */
 #define BOLDWHITE   "\033[1m\033[37m"      /* Bold White */
 
-typedef unsigned int uint;
-
-class Span
+template<typename T>
+class MutantStack : public std::stack<T>
 {
-    private :
-        std::vector<uint> vect;
-        uint maxSize;
-        Span();
     public :
-        Span(uint N);
-        Span(const Span& ref);
-        Span& operator=(const Span &ref);
-        ~Span();
+        typedef typename std::stack<T>::container_type::iterator iterator;
+        typedef typename std::stack<T>::container_type::const_iterator const_iterator;
 
-        void addNumber(uint number);
-        void addNumber(std::vector<uint>::iterator begin, std::vector<uint>::iterator end);
-        uint shortestSpan();
-        uint longestSpan();
+        MutantStack() : std::stack<T>() {}
+        MutantStack(const MutantStack &ref) : std::stack<T>(ref) {}
+        MutantStack& operator=(const MutantStack& ref) {
+            if (this != &ref)
+            {
+                std::stack<T>::operator=(ref);
+            }
+            return *this;
+        }
+        ~MutantStack() {}
 
-        void printVect();
+        iterator begin() {
+            return std::stack<T>::c.begin();
+        }
+
+        iterator end() {
+            return std::stack<T>::c.end();
+        }
+ 
+        const_iterator begin(int) {
+            return std::stack<T>::c.begin();
+        }
+
+        const_iterator end(int) {
+            return std::stack<T>::c.end();
+        }
 };
 
 #endif

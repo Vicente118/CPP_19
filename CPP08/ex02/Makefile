@@ -1,4 +1,4 @@
-NAME = 
+NAME = mutant
 
 SRCS = main.cpp
 
