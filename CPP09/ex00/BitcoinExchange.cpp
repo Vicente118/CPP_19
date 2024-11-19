@@ -79,7 +79,6 @@ void FindValues(std::map<std::string, float> FirstMap, char *input)
     {
         std::size_t pipe_pos = line.find('|');
         std::string date = line.substr(0, pipe_pos - 1);
-        // std::cout << GREEN << FirstMap["2011-01-03"] << RESET << std::endl;
         if (pipe_pos == std::string::npos) {
             std::cout << RED << "Error: pipe is missing or at the wrong place" << RESET << std::endl;
             continue;
@@ -93,7 +92,7 @@ void FindValues(std::map<std::string, float> FirstMap, char *input)
         double value = std::atof(value_str.c_str());
 
         if (!ValidDate(line)) {
-            std::cout << RED << "Error: format date is wrong" << RESET << std::endl;
+            std::cout << RED << "Error: format date is wrong => " <<  date << RESET << std::endl;
             continue;
         }
         if (value > 1000.0f || value < 0.0f) {
@@ -101,50 +100,28 @@ void FindValues(std::map<std::string, float> FirstMap, char *input)
             continue;
         }
 
-        int tmpDate = TransformFormat(date);
-
-        for (std::map<std::string, float>::iterator firstIt = FirstMap.begin(); firstIt != FirstMap.end(); ++firstIt) {
-            int firstDate = TransformFormat(firstIt->first);
-
-            if (tmpDate == firstDate) {
-                std::cout << date << " => " << value << " = " << (value * firstIt->second) << std::endl;
-                tmpDate = 0;
+        int inputDate = TransformFormat(date);
+        std::map<std::string, float>::iterator it = FirstMap.begin();
+        
+        int ActualDate = TransformFormat(it->first);
+        for (; it != FirstMap.end(); ++it) {
+            if (inputDate == TransformFormat(it->first)) {
+                std::cout << date << " => " << value << " = " << (value * it->second) << std::endl;
+                inputDate = 0;
                 break;
             }
-            else if (tmpDate < firstDate && static_cast<float>(tmpDate) > value) {
-                tmpDate = firstDate;
+            if (inputDate > TransformFormat(it->first) && TransformFormat(it->first) > ActualDate) {
+                ActualDate = TransformFormat(it->first);
             }
-
-            switch (static_cast<int>(value)) {
-                case 1001:
-                    std::cout << RED << "Error: pipe is missing or at the wrong place" << RESET << std::endl;
-                    tmpDate = 0;
-                    break;
-                case 1002:
-                    std::cout << RED << "Error: value is too small or too big" << RESET << std::endl;
-                    tmpDate = 0;
-                    break;
-                case 1003:
-                    std::cout << RED << "Error: format date is wrong" << RESET << std::endl;
-                    tmpDate = 0;
-                    break;
-            }
-
-            if (tmpDate == 0) break;
         }
-        if (tmpDate != 0) {
-            std::cout << date << " => " << value << " = " << /* HEREEE */ << std::endl;  // FIND WAY TO ACCESS MAP VALUE
+        if (inputDate != 0) {
+            std::ostringstream str_date; //= std::to_string(ActualDate);
+            str_date << ActualDate;
+            std::string FinalDate(str_date.str());
+            FinalDate.insert(FinalDate.begin() + 4, '-');
+            FinalDate.insert(FinalDate.begin() + 7, '-');
+            std::cout << date << " => " << value << " = " << value * FirstMap[FinalDate] << std::endl; 
         }
     }
     file.close();
 }
-
-
-/*  ERROR INPUT
-*       ERROR PIPE : 1001
-*       ERROR SIZE VALUE : 1002
-*       ERROR BAD DATE : 1003
-*/
-
-
-
