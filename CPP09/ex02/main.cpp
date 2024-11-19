@@ -36,8 +36,8 @@ int main(int argc, char *argv[])
     clock_t end2 = clock();
     double time2 = static_cast<double>(end2 - start2);
     std::cout << "Time to process a range of " << deq.size() << " elements with std::deque : " << time2 << " microseconds" << std::endl;
-    printContainer(vect);
-    printContainer(deq);
+    // printContainer(vect);
+    // printContainer(deq);
     return 0;
 }
 
